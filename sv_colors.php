@@ -83,6 +83,8 @@
 					array('entry_label' => 'name')
 				)
 			);
+			
+			add_action('wp_footer', array($this, 'print_css_vars'));
 		}
 		
 		public function get_list(): array{
@@ -103,5 +105,9 @@
 				
 			}
 			return $colors;
+		}
+		
+		public function print_css_vars(){
+			require_once($this->get_path('lib/frontend/tpl/css_color_vars.php'));
 		}
 	}
