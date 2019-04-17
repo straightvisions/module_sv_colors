@@ -9,7 +9,6 @@
 ** rgb( var( --color-primary ) );
 ** rgba( var( --color-primary ), .5 );
 */
-';
 <?php
 	foreach($this->get_list() as $slug => $info){
 		echo '--color-'.$slug.': '.$info['color'].';'."\n";
