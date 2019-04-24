@@ -72,9 +72,10 @@
 				->add_child( $this )
 				->set_ID( 'color' )
 				->set_title( __( 'Color Value', $this->get_module_name() ) )
-				->set_description( __( 'The color to be used.', $this->get_module_name() ) )
+				->set_description( __( 'The color to be used. Accepts hex and rgb values.', $this->get_module_name() ) )
 				->load_type( 'text' )
-				->set_placeholder( 'rgb(60,60,60)' );
+				->set_maxlength( 13 )
+				->set_placeholder( '#fffffff or 255, 255, 255' );
 			
 			add_theme_support(
 				'editor-color-palette',
@@ -98,9 +99,22 @@
 					'name'				=> $group['name']
 				);
 				
-				if(hexdec($group['color'])){
-					list($r, $g, $b) = sscanf($group['color'], "#%02x%02x%02x");
-					$colors[$group['slug']]['color']	= $r.','.$g.','.$b;
+				// Value is a hex color
+				if ( preg_match( '/#([a-f0-9]{3}){1,2}\b/i', $group['color'] ) ) {
+					if(hexdec($group['color'])){
+						list($r, $g, $b) = sscanf($group['color'], "#%02x%02x%02x");
+						$colors[$group['slug']]['color']	= $r.','.$g.','.$b;
+					}
+				}
+				
+				// Value is a rgb color
+				else if ( preg_match( '/(\d{1,3}),(\d{1,3}),(\d{1,3})/ix', str_replace( ' ', '', $group['color'] ) ) ) {
+					$colors[$group['slug']]['color']		= str_replace( ' ', '', $group['color'] );
+				}
+				
+				// Value is invalid
+				else {
+					$colors[$group['slug']]['color']		= __( 'Invalid color code', $this->get_module_name() );
 				}
 				
 			}
