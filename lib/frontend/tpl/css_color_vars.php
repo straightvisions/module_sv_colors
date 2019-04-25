@@ -11,8 +11,16 @@
 */
 <?php
 	foreach($this->get_list() as $slug => $info){
-		echo '--color-'.$slug.': '.$info['color'].';'."\n";
+		echo '--color-' . $slug . ': ' . $info['color'] . ';' . "\n";
 	}
 ?>
 }
+
+/* Color Classes for Gutenberg Support */
+<?php
+	foreach($this->get_list() as $slug => $info){
+		echo '.has-' . $slug . '-background-color { background-color: rgb(' .$info['color'] . '); }' . "\n";
+		echo '.has-' . $slug . '-color { color: rgb(' .$info['color'] . '); }' . "\n";
+	}
+?>
 </style>
