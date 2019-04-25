@@ -19,8 +19,8 @@
 /* Color Classes for Gutenberg Support */
 <?php
 	foreach($this->get_list() as $slug => $info){
-		echo '.has-' . $slug . '-background-color { background-color: rgb(' .$info['color'] . '); }' . "\n";
-		echo '.has-' . $slug . '-color { color: rgb(' .$info['color'] . '); }' . "\n";
+		echo '.has-' . $slug . '-background-color { background-color: rgb( var( --color-' . $slug . ' ) ); }' . "\n";
+		echo '.has-' . $slug . '-color { color: rgb( var( --color-' . $slug . ' ) ); }' . "\n";
 	}
 ?>
 </style>
