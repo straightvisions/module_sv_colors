@@ -90,34 +90,37 @@
 		
 		public function get_list(): array{
 			$colors					= array();
-			
-			foreach($this->recursive_change_key(
-				$this->s['colors_palette']->run_type()->get_data(),
-				array('entry_label' => 'name')
-			) as $group){
-				$colors[$group['slug']]	= array(
-					'name'				=> $group['name']
-				);
-				
-				// Value is a hex color
-				if ( preg_match( '/#([a-f0-9]{3}){1,2}\b/i', $group['color'] ) ) {
-					if(hexdec($group['color'])){
-						list($r, $g, $b) = sscanf($group['color'], "#%02x%02x%02x");
-						$colors[$group['slug']]['color']	= $r.','.$g.','.$b;
+
+			if ( $this->s['colors_palette']->run_type()->get_data() ) {
+				foreach($this->recursive_change_key(
+					$this->s['colors_palette']->run_type()->get_data(),
+					array('entry_label' => 'name')
+				) as $group){
+					$colors[$group['slug']]	= array(
+						'name'				=> $group['name']
+					);
+
+					// Value is a hex color
+					if ( preg_match( '/#([a-f0-9]{3}){1,2}\b/i', $group['color'] ) ) {
+						if(hexdec($group['color'])){
+							list($r, $g, $b) = sscanf($group['color'], "#%02x%02x%02x");
+							$colors[$group['slug']]['color']	= $r.','.$g.','.$b;
+						}
 					}
+
+					// Value is a rgb color
+					else if ( preg_match( '/(\d{1,3}),(\d{1,3}),(\d{1,3})/ix', str_replace( ' ', '', $group['color'] ) ) ) {
+						$colors[$group['slug']]['color']		= str_replace( ' ', '', $group['color'] );
+					}
+
+					// Value is invalid
+					else {
+						$colors[$group['slug']]['color']		= __( 'Invalid color code', $this->get_module_name() );
+					}
+
 				}
-				
-				// Value is a rgb color
-				else if ( preg_match( '/(\d{1,3}),(\d{1,3}),(\d{1,3})/ix', str_replace( ' ', '', $group['color'] ) ) ) {
-					$colors[$group['slug']]['color']		= str_replace( ' ', '', $group['color'] );
-				}
-				
-				// Value is invalid
-				else {
-					$colors[$group['slug']]['color']		= __( 'Invalid color code', $this->get_module_name() );
-				}
-				
 			}
+
 			return $colors;
 		}
 		
