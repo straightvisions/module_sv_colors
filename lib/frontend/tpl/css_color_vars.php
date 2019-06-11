@@ -6,12 +6,12 @@
 ** or rgba() property.
 **
 ** Examples:
-** rgb( var( --color-primary ) );
-** rgba( var( --color-primary ), .5 );
+** rgb( var( --sv-100-color-primary ) );
+** rgba( var( --sv-100-color-primary ), .5 );
 */
 <?php
 	foreach($this->get_list() as $slug => $info){
-		echo '--color-' . $slug . ': ' . $info['color'] . ';' . "\n";
+		echo '--sv-100-color-' . $slug . ': ' . $info['color'] . ';' . "\n";
 	}
 ?>
 }
@@ -19,8 +19,8 @@
 /* Color Classes for Gutenberg Support */
 <?php
 	foreach($this->get_list() as $slug => $info){
-		echo '.has-' . $slug . '-background-color { background-color: rgb( var( --color-' . $slug . ' ) ); }' . "\n";
-		echo '.has-' . $slug . '-color { color: rgb( var( --color-' . $slug . ' ) ); }' . "\n";
+		echo '.has-' . $slug . '-background-color { background-color: rgb( var( --sv-100-color-' . $slug . ' ) ); }' . "\n";
+		echo '.has-' . $slug . '-color { color: rgb( var( --sv-100-color-' . $slug . ' ) ); }' . "\n";
 	}
 ?>
 </style>
