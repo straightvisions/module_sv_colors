@@ -12,10 +12,6 @@
 	 */
 	
 	class sv_colors extends init {
-		public function __construct() {
-		
-		}
-		
 		private function recursive_change_key($arr, $set) {
 			if (is_array($arr) && is_array($set)) {
 				$newArr = array();
@@ -40,7 +36,7 @@
 			$this->get_root()->add_section( $this );
 			
 			$this->s['colors_palette'] =
-				static::$settings->create( $this )
+				$this->get_setting()
 								 ->set_ID( 'colors_palette' )
 								 ->set_title( __( 'Color Palettes', 'sv_100' ) )
 								 ->set_description( __( 'These colors will also be available in Gutenberg-Editor.', 'sv_100' ) )
