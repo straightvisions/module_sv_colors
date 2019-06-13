@@ -29,32 +29,29 @@
 		}
 		
 		public function init() {
-			// Translates the module
-			load_theme_textdomain( 'sv_colors', $this->get_path( 'languages' ) );
-			
 			// Module Info
 			$this->set_module_title( 'SV Colors' );
-			$this->set_module_desc( __( 'This module allows you to define your own color palette.', 'sv_colors' ) );
+			$this->set_module_desc( __( 'This module allows you to define your own color palette.', 'sv_100' ) );
 			
 			// Section Info
-			$this->set_section_title( 'Colors' );
-			$this->set_section_desc( __( 'Color Settings', 'sv_colors' ) );
+			$this->set_section_title( __( 'Colors', 'sv_100' ) );
+			$this->set_section_desc( __( 'Color Settings', 'sv_100' ) );
 			$this->set_section_type( 'settings' );
 			$this->get_root()->add_section( $this );
 			
 			$this->s['colors_palette'] =
 				static::$settings->create( $this )
 								 ->set_ID( 'colors_palette' )
-								 ->set_title( __( 'Color Palettes', 'sv_colors' ) )
-								 ->set_description( __( 'These colors will also be available in Gutenberg-Editor.', 'sv_colors' ) )
+								 ->set_title( __( 'Color Palettes', 'sv_100' ) )
+								 ->set_description( __( 'These colors will also be available in Gutenberg-Editor.', 'sv_100' ) )
 								 ->load_type( 'group' );
 			
 			$name						= $this->s['colors_palette']
 				->run_type()
 				->add_child( $this )
 				->set_ID( 'entry_label' )
-				->set_title( __( 'Color Name', 'sv_colors' ) )
-				->set_description( __( 'This Name is used to identify this color for users.', 'sv_colors' ) )
+				->set_title( __( 'Color Name', 'sv_100' ) )
+				->set_description( __( 'This Name is used to identify this color for users.', 'sv_100' ) )
 				->load_type( 'text' )
 				->set_placeholder( 'Dark Gray' );
 			
@@ -62,8 +59,8 @@
 				->run_type()
 				->add_child( $this )
 				->set_ID( 'slug' )
-				->set_title( __( 'Color Slug', 'sv_colors' ) )
-				->set_description( __( 'This Slug is used to identify this color within code.', 'sv_colors' ) )
+				->set_title( __( 'Color Slug', 'sv_100' ) )
+				->set_description( __( 'This Slug is used to identify this color within code.', 'sv_100' ) )
 				->load_type( 'text' )
 				->set_placeholder( 'dark-gray' );
 			
@@ -71,8 +68,8 @@
 				->run_type()
 				->add_child( $this )
 				->set_ID( 'color' )
-				->set_title( __( 'Color Value', 'sv_colors' ) )
-				->set_description( __( 'The color to be used. Accepts hex and rgb values.', 'sv_colors' ) )
+				->set_title( __( 'Color Value', 'sv_100' ) )
+				->set_description( __( 'The color to be used. Accepts hex and rgb values.', 'sv_100' ) )
 				->load_type( 'text' )
 				->set_maxlength( 13 )
 				->set_placeholder( '#fffffff or 255, 255, 255' );
@@ -115,7 +112,7 @@
 
 					// Value is invalid
 					else {
-						$colors[$group['slug']]['color']		= __( 'Invalid color code', 'sv_colors' );
+						$colors[$group['slug']]['color']		= __( 'Invalid color code', 'sv_100' );
 					}
 
 				}
