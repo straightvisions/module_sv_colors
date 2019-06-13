@@ -66,9 +66,9 @@
 				->set_ID( 'color' )
 				->set_title( __( 'Color Value', 'sv_100' ) )
 				->set_description( __( 'The color to be used. Accepts hex and rgb values.', 'sv_100' ) )
-				->load_type( 'text' )
-				->set_maxlength( 13 )
-				->set_placeholder( '#fffffff or 255, 255, 255' );
+				->load_type( 'color' );
+				//->set_maxlength( 13 )
+				//->set_placeholder( '#fffffff or 255, 255, 255' );
 			
 			add_theme_support(
 				'editor-color-palette',
