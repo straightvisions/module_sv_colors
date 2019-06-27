@@ -1,4 +1,4 @@
-<style data-sv_100_module="<?php echo $this->get_prefix('vars'); ?>">
+<style data-sv100_module="<?php echo $this->get_prefix('vars'); ?>">
 /* Global Vars */
 :root {
 /** The Colors are in RGB.
