@@ -27,27 +27,27 @@
 		public function init() {
 			// Module Info
 			$this->set_module_title( 'SV Colors' );
-			$this->set_module_desc( __( 'This module allows you to define your own color palette.', 'straightvisions_100' ) );
+			$this->set_module_desc( __( 'This module allows you to define your own color palette.', 'straightvisions-100' ) );
 			
 			// Section Info
-			$this->set_section_title( __( 'Colors', 'straightvisions_100' ) );
-			$this->set_section_desc( __( 'Color Settings', 'straightvisions_100' ) );
+			$this->set_section_title( __( 'Colors', 'straightvisions-100' ) );
+			$this->set_section_desc( __( 'Color Settings', 'straightvisions-100' ) );
 			$this->set_section_type( 'settings' );
 			$this->get_root()->add_section( $this );
 			
 			$this->s['colors_palette'] =
 				$this->get_setting()
 								 ->set_ID( 'colors_palette' )
-								 ->set_title( __( 'Color Palettes', 'straightvisions_100' ) )
-								 ->set_description( __( 'These colors will also be available in Gutenberg-Editor.', 'straightvisions_100' ) )
+								 ->set_title( __( 'Color Palettes', 'straightvisions-100' ) )
+								 ->set_description( __( 'These colors will also be available in Gutenberg-Editor.', 'straightvisions-100' ) )
 								 ->load_type( 'group' );
 			
 			$name						= $this->s['colors_palette']
 				->run_type()
 				->add_child( $this )
 				->set_ID( 'entry_label' )
-				->set_title( __( 'Color Name', 'straightvisions_100' ) )
-				->set_description( __( 'This Name is used to identify this color for users.', 'straightvisions_100' ) )
+				->set_title( __( 'Color Name', 'straightvisions-100' ) )
+				->set_description( __( 'This Name is used to identify this color for users.', 'straightvisions-100' ) )
 				->load_type( 'text' )
 				->set_placeholder( 'Dark Gray' );
 			
@@ -55,8 +55,8 @@
 				->run_type()
 				->add_child( $this )
 				->set_ID( 'slug' )
-				->set_title( __( 'Color Slug', 'straightvisions_100' ) )
-				->set_description( __( 'This Slug is used to identify this color within code.', 'straightvisions_100' ) )
+				->set_title( __( 'Color Slug', 'straightvisions-100' ) )
+				->set_description( __( 'This Slug is used to identify this color within code.', 'straightvisions-100' ) )
 				->load_type( 'text' )
 				->set_placeholder( 'dark-gray' );
 			
@@ -64,8 +64,8 @@
 				->run_type()
 				->add_child( $this )
 				->set_ID( 'color' )
-				->set_title( __( 'Color Value', 'straightvisions_100' ) )
-				->set_description( __( 'The color to be used. Accepts hex and rgb values.', 'straightvisions_100' ) )
+				->set_title( __( 'Color Value', 'straightvisions-100' ) )
+				->set_description( __( 'The color to be used. Accepts hex and rgb values.', 'straightvisions-100' ) )
 				->load_type( 'color' );
 				//->set_maxlength( 13 )
 				//->set_placeholder( '#fffffff or 255, 255, 255' );
@@ -108,7 +108,7 @@
 
 					// Value is invalid
 					else {
-						$colors[$group['slug']]['color']		= __( 'Invalid color code', 'straightvisions_100' );
+						$colors[$group['slug']]['color']		= __( 'Invalid color code', 'straightvisions-100' );
 					}
 
 				}
