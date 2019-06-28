@@ -2,12 +2,12 @@
 	namespace sv100;
 	
 	/**
-	 * @version         1.00
+	 * @version         4.000
 	 * @author			straightvisions GmbH
 	 * @package			sv100
-	 * @copyright		2017 straightvisions GmbH
+	 * @copyright		2019 straightvisions GmbH
 	 * @link			https://straightvisions.com
-	 * @since			1.0
+	 * @since			1.000
 	 * @license			See license.txt or https://straightvisions.com
 	 */
 	
