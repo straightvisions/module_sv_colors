@@ -11,7 +11,9 @@
 */
 <?php
 	foreach ( $this->get_list() as $slug => $info ) {
-		echo '--sv100_sv_color-' . $slug . ': ' . $info['color'] . ';' . "\n";
+		if ( ! empty( $slug ) && isset( $info['color'] ) ) {
+			echo '--sv100_sv_color-' . $slug . ': ' . $info['color'] . ';' . "\n";
+		}
 	}
 ?>
 }
@@ -19,8 +21,10 @@
 /* Color Classes for Gutenberg Support */
 <?php
 	foreach( $this->get_list() as $slug => $info ) {
-		echo '.has-' . $slug . '-background-color { background-color: rgb( var( --sv100_sv_color-' . $slug . ' ) ); }' . "\n";
-		echo '.has-' . $slug . '-color { color: rgb( var( --sv100_sv_color-' . $slug . ' ) ); }' . "\n";
+		if ( ! empty( $slug ) && isset( $info['color'] ) ) {
+			echo '.has-' . $slug . '-background-color { background-color: rgb( var( --sv100_sv_color-' . $slug . ' ) ); }' . "\n";
+			echo '.has-' . $slug . '-color { color: rgb( var( --sv100_sv_color-' . $slug . ' ) ); }' . "\n";
+		}
 	}
 ?>
 </style>
