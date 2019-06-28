@@ -1,4 +1,4 @@
-<style data-sv100_module="<?php echo $this->get_prefix('vars'); ?>">
+<style data-sv100_module="<?php echo $this->get_prefix( 'vars' ); ?>">
 /* Global Vars */
 :root {
 /** The Colors are in RGB.
@@ -6,21 +6,21 @@
 ** or rgba() property.
 **
 ** Examples:
-** rgb( var( --sv-100-color-primary ) );
-** rgba( var( --sv-100-color-primary ), .5 );
+** rgb( var( --sv100_sv_color-primary ) );
+** rgba( var( --sv100_sv_color-primary ), .5 );
 */
 <?php
-	foreach($this->get_list() as $slug => $info){
-		echo '--sv-100-color-' . $slug . ': ' . $info['color'] . ';' . "\n";
+	foreach ( $this->get_list() as $slug => $info ) {
+		echo '--sv100_sv_color-' . $slug . ': ' . $info['color'] . ';' . "\n";
 	}
 ?>
 }
 
 /* Color Classes for Gutenberg Support */
 <?php
-	foreach($this->get_list() as $slug => $info){
-		echo '.has-' . $slug . '-background-color { background-color: rgb( var( --sv-100-color-' . $slug . ' ) ); }' . "\n";
-		echo '.has-' . $slug . '-color { color: rgb( var( --sv-100-color-' . $slug . ' ) ); }' . "\n";
+	foreach( $this->get_list() as $slug => $info ) {
+		echo '.has-' . $slug . '-background-color { background-color: rgb( var( --sv100_sv_color-' . $slug . ' ) ); }' . "\n";
+		echo '.has-' . $slug . '-color { color: rgb( var( --sv100_sv_color-' . $slug . ' ) ); }' . "\n";
 	}
 ?>
 </style>

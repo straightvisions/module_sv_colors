@@ -12,15 +12,18 @@
 	 */
 	
 	class sv_colors extends init {
-		private function recursive_change_key($arr, $set) {
-			if (is_array($arr) && is_array($set)) {
+		private function recursive_change_key( $arr, $set ) {
+			if ( is_array( $arr ) && is_array( $set ) ) {
 				$newArr = array();
-				foreach ($arr as $k => $v) {
-					$key = array_key_exists( $k, $set) ? $set[$k] : $k;
-					$newArr[$key] = is_array($v) ? $this->recursive_change_key($v, $set) : $v;
+				
+				foreach ( $arr as $k => $v ) {
+					$key = array_key_exists( $k, $set) ? $set[ $k ] : $k;
+					$newArr[ $key ] = is_array( $v ) ? $this->recursive_change_key( $v, $set ) : $v;
 				}
+				
 				return $newArr;
 			}
+			
 			return $arr;
 		}
 		
@@ -37,30 +40,30 @@
 			
 			$this->s['colors_palette'] =
 				$this->get_setting()
-								 ->set_ID( 'colors_palette' )
-								 ->set_title( __( 'Color Palettes', 'sv100' ) )
-								 ->set_description( __( 'These colors will also be available in Gutenberg-Editor.', 'sv100' ) )
-								 ->load_type( 'group' );
+					 ->set_ID( 'colors_palette' )
+					 ->set_title( __( 'Color Palettes', 'sv100' ) )
+					 ->set_description( __( 'These colors will also be available in Gutenberg-Editor.', 'sv100' ) )
+					 ->load_type( 'group' );
 			
-			$name						= $this->s['colors_palette']
+			$this->get_setting( 'colors_palette' )
 				->run_type()
 				->add_child( $this )
 				->set_ID( 'entry_label' )
 				->set_title( __( 'Color Name', 'sv100' ) )
 				->set_description( __( 'This Name is used to identify this color for users.', 'sv100' ) )
 				->load_type( 'text' )
-				->set_placeholder( 'Dark Gray' );
+				->set_placeholder( __( 'Color Name', 'sv100' ) );
 			
-			$this->s['colors_palette']
+			$this->get_setting( 'colors_palette' )
 				->run_type()
 				->add_child( $this )
 				->set_ID( 'slug' )
 				->set_title( __( 'Color Slug', 'sv100' ) )
 				->set_description( __( 'This Slug is used to identify this color within code.', 'sv100' ) )
 				->load_type( 'text' )
-				->set_placeholder( 'dark-gray' );
+				->set_placeholder( __( 'color-slug', 'sv100' ) );
 			
-			$this->s['colors_palette']
+			$this->get_setting( 'colors_palette' )
 				->run_type()
 				->add_child( $this )
 				->set_ID( 'color' )
@@ -73,42 +76,43 @@
 			add_theme_support(
 				'editor-color-palette',
 				$this->recursive_change_key(
-					$this->s['colors_palette']->run_type()->get_data(),
-					array('entry_label' => 'name')
+					$this->get_setting( 'colors_palette' )->run_type()->get_data(),
+					array( 'entry_label' => 'name' )
 				)
 			);
 			
-			add_action('wp_footer', array($this, 'print_css_vars'));
+			add_action( 'wp_footer', array( $this, 'print_css_vars' ) );
 		}
 		
-		public function get_list(): array{
+		public function get_list(): array {
 			$colors					= array();
 
-			if ( $this->s['colors_palette']->run_type()->get_data() ) {
-				foreach($this->recursive_change_key(
-					$this->s['colors_palette']->run_type()->get_data(),
-					array('entry_label' => 'name')
-				) as $group){
-					$colors[$group['slug']]	= array(
-						'name'				=> $group['name']
+			if ( $this->get_setting( 'colors_palette' )->run_type()->get_data() ) {
+				foreach ( $this->recursive_change_key(
+					$this->get_setting( 'colors_palette' )->run_type()->get_data(),
+					array( 'entry_label' => 'name' )
+				) as $group ) {
+					$colors[ $group['slug'] ]	= array(
+						'name'					=> $group['name']
 					);
 
 					// Value is a hex color
 					if ( preg_match( '/#([a-f0-9]{3}){1,2}\b/i', $group['color'] ) ) {
-						if(hexdec($group['color'])){
-							list($r, $g, $b) = sscanf($group['color'], "#%02x%02x%02x");
-							$colors[$group['slug']]['color']	= $r.','.$g.','.$b;
+						if ( hexdec( $group['color'] ) ) {
+							list( $r, $g, $b ) = sscanf( $group['color'], "#%02x%02x%02x" );
+							
+							$colors[ $group['slug'] ]['color']	= $r . ',' . $g . ',' . $b;
 						}
 					}
 
 					// Value is a rgb color
 					else if ( preg_match( '/(\d{1,3}),(\d{1,3}),(\d{1,3})/ix', str_replace( ' ', '', $group['color'] ) ) ) {
-						$colors[$group['slug']]['color']		= str_replace( ' ', '', $group['color'] );
+						$colors[ $group['slug'] ]['color']		= str_replace( ' ', '', $group['color'] );
 					}
 
 					// Value is invalid
 					else {
-						$colors[$group['slug']]['color']		= __( 'Invalid color code', 'sv100' );
+						$colors[ $group['slug'] ]['color']		= __( 'Invalid color code', 'sv100' );
 					}
 
 				}
@@ -118,6 +122,6 @@
 		}
 		
 		public function print_css_vars(){
-			require_once($this->get_path('lib/frontend/tpl/css_color_vars.php'));
+			require_once( $this->get_path( 'lib/frontend/tpl/css_color_vars.php' ) );
 		}
 	}
