@@ -42,7 +42,11 @@
 				$this->get_setting()
 					 ->set_ID( 'colors_palette' )
 					 ->set_title( __( 'Color Palettes', 'sv100' ) )
-					 ->set_description( __( 'These colors will also be available in Gutenberg-Editor.', 'sv100' ) )
+					 ->set_description( '<p>' .
+					 	__( 'These colors will be available in the Gutenberg-Editor and as helper classes.', 'sv100' ) . '<br><br>' .
+						__( 'Text Color Class', 'sv100' ) . '<code>.has-<i style="color: #1e1f22;">slug</i>-color</code><br>' .
+						__( 'Background Color Class', 'sv100' ) . '<code>.has-<i style="color: #1e1f22;">slug</i>-background-color</code>' . '</p>'
+					 )
 					 ->load_type( 'group' );
 			
 			$this->get_setting( 'colors_palette' )
