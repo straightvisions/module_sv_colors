@@ -17,7 +17,7 @@
 				 ->set_module_desc( __( 'Define your own color palette.', 'sv100' ) )
 				 ->load_settings()
 				 ->set_section_title( __( 'Colors', 'sv100' ) )
-				 ->set_section_desc( __( 'Define your color palette!', 'sv100' ) )
+				 ->set_section_desc( __( 'Define your color palette', 'sv100' ) )
 				 ->set_section_type( 'settings' )
 				 ->get_root()
 				 ->add_section( $this );
