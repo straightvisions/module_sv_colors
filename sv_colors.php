@@ -39,9 +39,9 @@
 				 ->set_description( '<p>' .
 					__( 'These colors will be available in the Gutenberg-Editor and as helper classes.', 'sv100' ) . '<br><br>
 					<u><strong>' . __( 'Text color class', 'sv100' ) . '</strong></u>
-					<code style="margin-top: 5px;">.has-<i style="color: #1e1f22;">slug</i>-color</code><br>
+					<code style="margin-top: 5px;">.has-<i style="color: #1e1e1e;">slug</i>-color</code><br>
 					<u><strong>' . __( 'Background color class', 'sv100' ) . '</strong></u>
-					<code style="margin-top: 5px;">.has-<i style="color: #1e1f22;">slug</i>-background-color</code>' . '</p>'
+					<code style="margin-top: 5px;">.has-<i style="color: #1e1e1e;">slug</i>-background-color</code>' . '</p>'
 				 )
 				 ->load_type( 'group' );
 			
