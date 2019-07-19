@@ -14,10 +14,10 @@
 	class sv_colors extends init {
 		public function init() {
 			$this->set_module_title( 'SV Colors' )
-				 ->set_module_desc( __( 'This module allows you to define your own color palette.', 'sv100' ) )
+				 ->set_module_desc( __( 'Define your own color palette.', 'sv100' ) )
 				 ->load_settings()
 				 ->set_section_title( __( 'Colors', 'sv100' ) )
-				 ->set_section_desc( __( 'Color Settings', 'sv100' ) )
+				 ->set_section_desc( __( 'Define your color palette!', 'sv100' ) )
 				 ->set_section_type( 'settings' )
 				 ->get_root()
 				 ->add_section( $this );
@@ -35,11 +35,13 @@
 		
 		protected function load_settings(): sv_colors {
 			$this->get_setting( 'colors_palette' )
-				 ->set_title( __( 'Color Palettes', 'sv100' ) )
+				 ->set_title( __( 'Color palette', 'sv100' ) )
 				 ->set_description( '<p>' .
-					__( 'These colors will be available in the Gutenberg-Editor and as helper classes.', 'sv100' ) . '<br><br>' .
-					__( 'Text Color Class', 'sv100' ) . '<code>.has-<i style="color: #1e1f22;">slug</i>-color</code><br>' .
-					__( 'Background Color Class', 'sv100' ) . '<code>.has-<i style="color: #1e1f22;">slug</i>-background-color</code>' . '</p>'
+					__( 'These colors will be available in the Gutenberg-Editor and as helper classes.', 'sv100' ) . '<br><br>
+					<u><strong>' . __( 'Text color class', 'sv100' ) . '</strong></u>
+					<code style="margin-top: 5px;">.has-<i style="color: #1e1f22;">slug</i>-color</code><br>
+					<u><strong>' . __( 'Background color class', 'sv100' ) . '</strong></u>
+					<code style="margin-top: 5px;">.has-<i style="color: #1e1f22;">slug</i>-background-color</code>' . '</p>'
 				 )
 				 ->load_type( 'group' );
 			
@@ -47,26 +49,23 @@
 				 ->run_type()
 				 ->add_child( $this )
 				 ->set_ID( 'entry_label' )
-				 ->set_title( __( 'Color Name', 'sv100' ) )
-				 ->set_description( __( 'This Name is used to identify this color for users.', 'sv100' ) )
-				 ->load_type( 'text' )
-				 ->set_placeholder( __( 'Color Name', 'sv100' ) );
+				 ->set_title( __( 'Name', 'sv100' ) )
+				 ->set_description( __( 'Give your color a name.', 'sv100' ) )
+				 ->load_type( 'text' );
 			
 			$this->get_setting( 'colors_palette' )
 				 ->run_type()
 				 ->add_child( $this )
 				 ->set_ID( 'slug' )
-				 ->set_title( __( 'Color Slug', 'sv100' ) )
-				 ->set_description( __( 'This Slug is used to identify this color within code.', 'sv100' ) )
-				 ->load_type( 'text' )
-				 ->set_placeholder( __( 'color-slug', 'sv100' ) );
+				 ->set_title( __( 'Slug', 'sv100' ) )
+				 ->set_description( __( 'This slug is used for the helper classes.', 'sv100' ) )
+				 ->load_type( 'text' );
 			
 			$this->get_setting( 'colors_palette' )
 				 ->run_type()
 				 ->add_child( $this )
 				 ->set_ID( 'color' )
-				 ->set_title( __( 'Color Value', 'sv100' ) )
-				 ->set_description( __( 'The color to be used. Accepts hex and rgb values.', 'sv100' ) )
+				 ->set_title( __( 'Color', 'sv100' ) )
 				 ->load_type( 'color' );
 			
 			return $this;
