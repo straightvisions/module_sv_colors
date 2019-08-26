@@ -13,7 +13,7 @@
 	
 	class sv_colors extends init {
 		public function init() {
-			$this->set_module_title( 'SV Colors' )
+			$this->set_module_title( __( 'SV Colors', 'sv100' ) )
 				 ->set_module_desc( __( 'Define your own color palette.', 'sv100' ) )
 				 ->load_settings()
 				 ->set_section_title( __( 'Colors', 'sv100' ) )
@@ -37,7 +37,8 @@
 			$this->get_setting( 'colors_palette' )
 				 ->set_title( __( 'Color palette', 'sv100' ) )
 				 ->set_description( '<p>' .
-					__( 'These colors will be available in the Gutenberg-Editor and as helper classes.', 'sv100' ) . '<br><br>
+					__( 'These colors will be available in the Gutenberg-Editor and as helper classes.', 'sv100' )
+					. '<br><br>
 					<u><strong>' . __( 'Text color class', 'sv100' ) . '</strong></u>
 					<code style="margin-top: 5px;">.has-<i style="color: #1e1e1e;">slug</i>-color</code><br>
 					<u><strong>' . __( 'Background color class', 'sv100' ) . '</strong></u>
