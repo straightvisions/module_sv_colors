@@ -22,8 +22,8 @@
 <?php
 	foreach( $this->get_list() as $slug => $info ) {
 		if ( ! empty( $slug )) {
-			echo '.has-' . $slug . '-background-color { background-color: rgb( var( --sv100_sv_color-' . $slug . ' ) ) !important; }' . "\n";
-			echo '.has-' . $slug . '-color { color: rgb( var( --sv100_sv_color-' . $slug . ' ) ) !important; }' . "\n";
+			echo '.has-' . $slug . '-background-color { background-color: rgba( var( --sv100_sv_color-' . $slug . ' ) ) !important; }' . "\n";
+			echo '.has-' . $slug . '-color { color: rgba( var( --sv100_sv_color-' . $slug . ' ) ) !important; }' . "\n";
 		}
 	}
 ?>
