@@ -2,7 +2,7 @@
 	namespace sv100;
 	
 	/**
-	 * @version         4.000
+	 * @version         4.009
 	 * @author			straightvisions GmbH
 	 * @package			sv100
 	 * @copyright		2019 straightvisions GmbH
@@ -24,10 +24,7 @@
 			
 			add_theme_support(
 				'editor-color-palette',
-				$this->recursive_change_key(
-					$this->get_setting( 'colors_palette' )->run_type()->get_data(),
-					array( 'entry_label' => 'name' )
-				)
+				$this->get_list( 'hex' )
 			);
 			
 			add_action( 'wp_footer', array( $this, 'print_css_vars' ) );
@@ -37,8 +34,8 @@
 			$this->get_setting( 'colors_palette' )
 				 ->set_title( __( 'Color palette', 'sv100' ) )
 				 ->set_description( '<p>' .
-					__( 'These colors will be available in the Gutenberg-Editor and as helper classes.', 'sv100' )
-					. '<br><br>
+									__( 'These colors will be available in the Gutenberg-Editor and as helper classes.', 'sv100' )
+									. '<br><br>
 					<u><strong>' . __( 'Text color class', 'sv100' ) . '</strong></u>
 					<code style="margin-top: 5px;">.has-<i style="color: #1e1e1e;">slug</i>-color</code><br>
 					<u><strong>' . __( 'Background color class', 'sv100' ) . '</strong></u>
@@ -72,7 +69,7 @@
 			return $this;
 		}
 		
-		public function get_list(): array {
+		public function get_list( $color_type = 'rgb' ): array {
 			$colors		= array();
 			$setting 	= $this->get_setting( 'colors_palette' );
 			
@@ -81,18 +78,30 @@
 					$setting->run_type()->get_data(),
 					array( 'entry_label' => 'name' )
 				) as $group ) {
-					$colors[ $group['slug'] ]	= array(
-						'name'					=> $group['name'],
-						'color'					=> $setting->get_rgb( $group['color'] ),
+					switch( $color_type ) {
+						case 'hex':
+							$color_value = $setting->get_hex( $group['color'] );
+							break;
+						case 'rgb':
+						case 'rgba':
+						default:
+							$color_value = $setting->get_rgb( $group['color'] );
+							break;
+					}
+					
+					$colors[] = array(
+						'name'	=> $group['name'],
+						'slug'	=> $group['slug'],
+						'color'	=> $color_value,
 					);
 					
 				}
 			}
-
+			
 			return $colors;
 		}
 		
-		public function print_css_vars(){
+		public function print_css_vars() {
 			require_once( $this->get_path( 'lib/frontend/tpl/css_color_vars.php' ) );
 		}
 		

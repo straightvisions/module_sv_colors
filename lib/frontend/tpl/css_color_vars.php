@@ -10,9 +10,9 @@
 ** rgba( var( --sv100_sv_color-primary ), .5 );
 */
 <?php
-	foreach ( $this->get_list() as $slug => $info ) {
-		if ( ! empty( $slug ) ) {
-			echo '--sv100_sv_color-' . $slug . ': ' . (isset($info['color']) ? $info['color'] : '0,0,0') . ';' . "\n";
+	foreach ( $this->get_list() as $c ) {
+		if ( ! empty( $c['slug'] ) ) {
+			echo '--sv100_sv_color-' . $c['slug'] . ': ' . (isset($c['color']) ? $c['color'] : '0,0,0') . ';' . "\n";
 		}
 	}
 ?>
@@ -20,10 +20,10 @@
 
 /* Color Classes for Gutenberg Support */
 <?php
-	foreach( $this->get_list() as $slug => $info ) {
-		if ( ! empty( $slug )) {
-			echo '.has-' . $slug . '-background-color { background-color: rgba( var( --sv100_sv_color-' . $slug . ' ) ) !important; }' . "\n";
-			echo '.has-' . $slug . '-color { color: rgba( var( --sv100_sv_color-' . $slug . ' ) ) !important; }' . "\n";
+	foreach( $this->get_list() as $c ) {
+		if ( ! empty( $c['slug'] ) ) {
+			echo '.has-' . $c['slug'] . '-background-color { background-color: rgba( var( --sv100_sv_color-' . $c['slug'] . ' ) ) !important; }' . "\n";
+			echo '.has-' . $c['slug'] . '-color { color: rgba( var( --sv100_sv_color-' . $c['slug'] . ' ) ) !important; }' . "\n";
 		}
 	}
 ?>
