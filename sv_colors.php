@@ -2,7 +2,7 @@
 	namespace sv100;
 	
 	/**
-	 * @version         4.009
+	 * @version         4.010
 	 * @author			straightvisions GmbH
 	 * @package			sv100
 	 * @copyright		2019 straightvisions GmbH
@@ -73,9 +73,9 @@
 			$colors		= array();
 			$setting 	= $this->get_setting( 'colors_palette' );
 			
-			if ( $setting->run_type()->get_data() ) {
+			if ( $setting->get_data() ) {
 				foreach ( $this->recursive_change_key(
-					$setting->run_type()->get_data(),
+					$setting->get_data(),
 					array( 'entry_label' => 'name' )
 				) as $group ) {
 					switch( $color_type ) {
