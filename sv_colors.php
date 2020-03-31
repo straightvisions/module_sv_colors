@@ -80,12 +80,12 @@
 				) as $group ) {
 					switch( $color_type ) {
 						case 'hex':
-							$color_value = $setting->get_hex( $group['color'] );
+							$color_value = isset( $group['color'] ) ? $setting->get_hex( $group['color'] ) : '#000000';
 							break;
 						case 'rgb':
 						case 'rgba':
 						default:
-							$color_value = $setting->get_rgb( $group['color'] );
+							$color_value = isset( $group['color'] ) ? $setting->get_rgb( $group['color'] ) : '0,0,0,1';
 							break;
 					}
 					
