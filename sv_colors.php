@@ -45,7 +45,7 @@
 			
 			$this->get_setting( 'colors_palette' )
 				 ->run_type()
-				 ->add_child( $this )
+				 ->add_child()
 				 ->set_ID( 'entry_label' )
 				 ->set_title( __( 'Name', 'sv100' ) )
 				 ->set_description( __( 'Give your color a name.', 'sv100' ) )
@@ -53,7 +53,7 @@
 			
 			$this->get_setting( 'colors_palette' )
 				 ->run_type()
-				 ->add_child( $this )
+				 ->add_child()
 				 ->set_ID( 'slug' )
 				 ->set_title( __( 'Slug', 'sv100' ) )
 				 ->set_description( __( 'This slug is used for the helper classes.', 'sv100' ) )
@@ -61,9 +61,10 @@
 			
 			$this->get_setting( 'colors_palette' )
 				 ->run_type()
-				 ->add_child( $this )
+				 ->add_child()
 				 ->set_ID( 'color' )
 				 ->set_title( __( 'Color', 'sv100' ) )
+				->set_default_value(0,0,0,1)
 				 ->load_type( 'color' );
 			
 			return $this;
