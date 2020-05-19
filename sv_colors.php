@@ -92,7 +92,7 @@
 					
 					$colors[] = array(
 						'name'	=> $group['name'],
-						'slug'	=> $group['slug'],
+						'slug'	=> $this->sanitize_slug($group['slug']),
 						'color'	=> $color_value,
 					);
 					
@@ -119,5 +119,11 @@
 			}
 			
 			return $arr;
+		}
+		public function sanitize_slug(string $slug): string{
+			$slug		= sanitize_title_with_dashes($slug);
+			$slug		= str_replace('_','-', $slug);
+
+			return $slug;
 		}
 	}
