@@ -29,7 +29,7 @@
 
 			if(is_admin()){
 				// editor output
-				$this->print_css_vars();
+				add_action( 'admin_footer', array( $this, 'print_css_vars' ) );
 			}else{
 				add_action( 'wp_footer', array( $this, 'print_css_vars' ) );
 			}
