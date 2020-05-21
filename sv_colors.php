@@ -26,8 +26,14 @@
 				'editor-color-palette',
 				$this->get_list( 'hex' )
 			);
-			
-			add_action( 'wp_footer', array( $this, 'print_css_vars' ) );
+
+			if(is_admin()){
+				// editor output
+				$this->print_css_vars();
+			}else{
+				add_action( 'wp_footer', array( $this, 'print_css_vars' ) );
+			}
+
 		}
 		
 		protected function load_settings(): sv_colors {
