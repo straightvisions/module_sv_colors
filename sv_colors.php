@@ -1,26 +1,18 @@
 <?php
 	namespace sv100;
-	
-	/**
-	 * @version         4.010
-	 * @author			straightvisions GmbH
-	 * @package			sv100
-	 * @copyright		2019 straightvisions GmbH
-	 * @link			https://straightvisions.com
-	 * @since			1.000
-	 * @license			See license.txt or https://straightvisions.com
-	 */
-	
+
 	class sv_colors extends init {
 		public function init() {
 			$this->set_module_title( __( 'SV Colors', 'sv100' ) )
-				 ->set_module_desc( __( 'Define your own color palette.', 'sv100' ) )
-				 ->load_settings()
-				 ->set_section_title( __( 'Colors', 'sv100' ) )
-				 ->set_section_desc( __( 'Define your color palette', 'sv100' ) )
-				 ->set_section_type( 'settings' )
-				 ->get_root()
-				 ->add_section( $this );
+				->set_module_desc( __( 'Define your own color palette.', 'sv100' ) )
+				->set_css_cache_active()
+				->set_section_title( $this->get_module_title() )
+				->set_section_desc( $this->get_module_desc() )
+				->set_section_type( 'settings' )
+				->set_section_template_path()
+				->set_section_order(5000)
+				->get_root()
+				->add_section( $this );
 			
 			add_theme_support(
 				'editor-color-palette',
@@ -33,7 +25,6 @@
 			}else{
 				add_action( 'wp_footer', array( $this, 'print_css_vars' ) );
 			}
-
 		}
 		
 		protected function load_settings(): sv_colors {
@@ -109,7 +100,7 @@
 		}
 		
 		public function print_css_vars() {
-			require_once( $this->get_path( 'lib/frontend/tpl/css_color_vars.php' ) );
+			require_once( $this->get_path( 'lib/tpl/frontend/default.php' ) );
 		}
 		
 		private function recursive_change_key( $arr, $set ) {
