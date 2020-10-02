@@ -10,7 +10,7 @@
 				->set_section_desc( $this->get_module_desc() )
 				->set_section_type( 'settings' )
 				->set_section_template_path()
-				->set_section_order(5000)
+				->set_section_order(700)
 				->get_root()
 				->add_section( $this );
 			
