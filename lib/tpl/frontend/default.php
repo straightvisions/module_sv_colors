@@ -21,8 +21,8 @@
 	<?php
 		foreach( $this->get_list() as $c ) {
 			if ( ! empty( $c['slug'] ) ) {
-				echo '.has-' . $c['slug'] . '-background-color { background-color: rgba( var( --sv100_sv_color-' . $c['slug'] . ' ) ) !important; }' . "\n";
-				echo '.has-' . $c['slug'] . '-color { color: rgba( var( --sv100_sv_color-' . $c['slug'] . ' ) ) !important; }' . "\n";
+				echo '.has-' . $c['slug'] . '-background-color:not(.wp-block-separator) { background-color: rgba( var( --sv100_sv_color-' . $c['slug'] . ' ) ) !important; }' . "\n";
+				echo '.has-' . $c['slug'] . '-color:not(.wp-block-separator){ color: rgba( var( --sv100_sv_color-' . $c['slug'] . ' ) ) !important; }' . "\n";
 			}
 		}
 	?>
