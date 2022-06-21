@@ -18,15 +18,16 @@
 				'editor-color-palette',
 				$this->get_list( 'hex' )
 			);
-
-			if(is_admin()){
-				// editor output
-				add_action( 'admin_footer', array( $this, 'print_css_vars' ) );
-			}else{
-				add_action( 'wp_footer', array( $this, 'print_css_vars' ) );
-			}
 		}
-		
+		protected function register_scripts(): sv_colors {
+			parent::register_scripts();
+
+			foreach($this->get_scripts() as $script){
+				$script->set_inline();
+			}
+
+			return $this;
+		}
 		protected function load_settings(): sv_colors {
 			$this->get_setting( 'colors_palette' )
 				 ->set_title( __( 'Color palette', 'sv100' ) )
@@ -98,11 +99,6 @@
 			
 			return $colors;
 		}
-		
-		public function print_css_vars() {
-			require_once( $this->get_path( 'lib/tpl/frontend/default.php' ) );
-		}
-		
 		private function recursive_change_key( $arr, $set ) {
 			if ( is_array( $arr ) && is_array( $set ) ) {
 				$newArr = array();
