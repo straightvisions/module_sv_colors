@@ -69,7 +69,7 @@
 				 ->add_child()
 				 ->set_ID( 'color' )
 				 ->set_title( __( 'Color', 'sv100' ) )
-				->set_default_value(0,0,0,1)
+				->set_default_value('0,0,0,1')
 				 ->load_type( 'color' );
 			
 			return $this;
