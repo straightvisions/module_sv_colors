@@ -46,13 +46,14 @@ class sv_colors extends init {
 						$color_value = isset( $group['color'] ) ? $setting->get_rgb( $group['color'] ) : '0,0,0,1';
 						break;
 				}
-				
-				$colors[] = array(
-					'name'  => $group['name'],
-					'slug'  => $this->sanitize_slug( $group['slug'] ),
-					'color' => $color_value,
-				);
-				
+
+				if(isset($group['name'])){
+					$colors[] = array(
+						'name'  => $group['name'],
+						'slug'  => $this->sanitize_slug( $group['slug'] ),
+						'color' => $color_value,
+					);
+				}
 			}
 		}
 		
